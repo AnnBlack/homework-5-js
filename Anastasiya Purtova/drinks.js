@@ -1,42 +1,33 @@
-(function() {
-  const COLA = {
-    price: 50,
-    calories: 40
-  }
+Drinks.COFFEE = {
+	name: 'Coffee',
+	price: 80,
+	calories: 20,
+}
 
-  const COFFEE = {
-    price: 80,
-    calories: 20
-  }
+Drinks.COLA = {
+	name: 'Coke',
+	price: 50,
+	calories: 40,
+}
 
-  class Drinks {
-    constructor(drinksType) {
-      this.drinksType = drinksType;
-      this.calculatePrice();
-      this.calculateCalories();
-    }
+function Drinks(type) {
+  this.title = 'Drinks';
+  this.type = type;
+  this.price = this.getPrice();
+  this.calories = this.getCalories();
+}
 
-    calculatePrice() {
-      if(this.drinksType === 'COLA') {
-        this.price = COLA.price;
-      } else if(this.drinksType === 'COFFEE') {
-        this.price = COFFEE.price;
-      } else {
-        console.log('You could add some drinks');
-      }
-      return this.price;
-    }
+Drinks.prototype = Object.create(Menu.prototype);
+Drinks.constructor = Drinks;
 
-    calculateCalories() {
-      if(this.drinksType === 'COLA') {
-        this.calories = COLA.calories;
-      } else if(this.drinksType === 'COFFEE') {
-        this.calories = COFFEE.calories;
-      } else {
-        console.log('You could add some drinks');
-      }
-      return this.calories;
-    }
-  }
-  window.menu.drinks = Drinks;
-})();
+Drinks.prototype.getDrink = function() {
+  return this.type;
+}
+
+Drinks.prototype.getPrice = function() {
+  return this.type.price;
+}
+
+Drinks.prototype.getCalories = function() {
+  return this.type.calories;
+}

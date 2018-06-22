@@ -8,14 +8,30 @@
 </head>
 <body>
   <p>Open console below</p>
-
-  <script src="index.js"></script>
+  <script src="menu.js"></script>
   <script src="hamburger.js"></script>
-  <script src="salat.js"></script>
+  <script src="salad.js"></script>
   <script src="drinks.js"></script>
   <script src="order.js"></script>
   <script>
-    var Menu = new menu.order();
+    var order = new Order();
+    var burger = new Hamburger(Hamburger.SIZE_LARGE, [Hamburger.STUFFING_CHEESE, Hamburger.STUFFING_SALAD]);
+    order.addPosition(burger);
+    var coffee = new Drinks(Drinks.COLA);
+    order.addPosition(coffee);
+    var salad = new Salad(Salad.OLIVIE, 90);
+    order.addPosition(salad);
+    console.table(order);
+    order.deletePosition(salad);
+    console.table(order);
+    console.log('total price: ' + order.calculatePrice());
+    console.log('total calories: ' + order.calculateCalories());
+
+    order.confirmOrder();
+
+    var salad1 = new Salad(Salad.OLIVIE, 90);
+    console.log(order.addPosition(salad1));
+
   </script>
 </body>
 </html>
